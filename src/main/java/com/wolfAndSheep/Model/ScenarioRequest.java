@@ -5,6 +5,17 @@ import java.util.List;
 public class ScenarioRequest {
     private int gridSize;
     private int scenario;
+
+    public int getNumberAnimals() {
+        return numberAnimals;
+    }
+
+    public void setNumberAnimals(int numberAnimals) {
+        this.numberAnimals = numberAnimals;
+    }
+
+    private int numberAnimals;
+
     private String solver;
     private List<EntityPosition> initialPositions;
 
@@ -31,13 +42,4 @@ public class ScenarioRequest {
     public void setSolver(String solver) {
         this.solver = solver;
     }
-
-    public List<EntityPosition> getInitialPositions() {
-        return initialPositions;
-    }
-
-    public void setInitialPositions(List<EntityPosition> initialPositions) {
-        this.initialPositions = initialPositions;
-    }
-// Getters and setters
 }

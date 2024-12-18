@@ -26,37 +26,21 @@ public class WolfAndSheepController {
         int stateSpacesExplored = 0;
 
 
-        for (EntityPosition entity : request.getInitialPositions()) {
-            System.out.println(entity.getRow()+" - "+entity.getCol()+" - "+entity.getType());
-            grid.placeEntity(entity.getRow(), entity.getCol(), entity.getType());
-        }
+
 
         if ("bruteforce".equalsIgnoreCase(request.getSolver())) {
-            BruteForceSolver solver = new BruteForceSolver(grid);
+            OptimalBruteForceSolver solver = new OptimalBruteForceSolver(grid);
 
-            if (request.getScenario() == 1) {
-                solver.solveScenario1();
-            } else if (request.getScenario() == 2) {
-                solver.solveScenario2();
+            if (request.getScenario() == 0) {
+                solver.solveScenario1(request.getNumberAnimals());
             }
             stateSpacesExplored = solver.getStateSpaceCounter();
         } else if ("backtracking".equalsIgnoreCase(request.getSolver())) {
-            BacktrackingSolver solver = new BacktrackingSolver(grid);
-            if (request.getScenario() == 1) {
-                solver.solveScenario1();
-            } else if (request.getScenario() == 2) {
-                solver.solveScenario2();
+            OptimalBacktrackingSolver solver = new OptimalBacktrackingSolver(grid);
+            if (request.getScenario() == 0) {
+                solver.solveScenario1(request.getNumberAnimals());
             }
-            stateSpacesExplored = solver.getStateSpaceCounter();
-
-        }else if ("optimal".equalsIgnoreCase(request.getSolver())) {
-            OptimalBruteForceSolver solver = new OptimalBruteForceSolver(grid);
-            if (request.getScenario() == 1) {
-                solver.solveScenario1(grid.getCoordinates('w'));
-            } else if (request.getScenario() == 2) {
-                solver.solveScenario2(grid.getCoordinates('s'));
-            }
-            stateSpacesExplored = solver.getStateSpaceCounter();
+            stateSpacesExplored = solver.getStateCounter();
 
         }
 

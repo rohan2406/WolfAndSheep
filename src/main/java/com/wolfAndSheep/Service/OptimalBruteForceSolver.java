@@ -22,18 +22,18 @@ public class OptimalBruteForceSolver {
         this.grid = grid;
     }
 
-    public void solveScenario1(List<int[]> wolfPositions) {
+    public void solveScenario1(int numWolves ) {
         System.out.println("Calculating optimal solution for Scenario 1 using Brute Force...");
         long startTime = System.nanoTime();
         stateSpaceCounter = 0;
 
 
         int maxSheep = 0;
-        List<int[]> bestWolves = new ArrayList<>(wolfPositions);
+        List<int[]> bestWolves = new ArrayList<>();
         grid.resetGrid();
 
         // Try all wolf placements
-        for (List<int[]> placement : generateCombinations(grid.getSize(), wolfPositions.size())) {
+        for (List<int[]> placement : generateCombinations(grid.getSize(), numWolves)) {
             grid.resetGrid();
             for (int[] pos : placement) {
                 grid.placeEntity(pos[0], pos[1], 'w');
