@@ -6,6 +6,7 @@ import com.wolfAndSheep.Model.ScenarioRequest;
 import com.wolfAndSheep.Service.BacktrackingSolver;
 import com.wolfAndSheep.Service.BruteForceSolver;
 import com.wolfAndSheep.Service.OptimalBacktrackingSolver;
+import com.wolfAndSheep.Service.OptimalBruteForceSolver;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,7 +50,7 @@ public class WolfAndSheepController {
             stateSpacesExplored = solver.getStateSpaceCounter();
 
         }else if ("optimal".equalsIgnoreCase(request.getSolver())) {
-            OptimalBacktrackingSolver solver = new OptimalBacktrackingSolver(grid);
+            OptimalBruteForceSolver solver = new OptimalBruteForceSolver(grid);
             if (request.getScenario() == 1) {
                 solver.solveScenario1(grid.getCoordinates('w'));
             } else if (request.getScenario() == 2) {
@@ -66,7 +67,7 @@ public class WolfAndSheepController {
         response.put("solver", request.getSolver());
         response.put("wolves", grid.getCoordinates('w'));
         response.put("sheep", grid.getCoordinates('s'));
-        response.put("state_space_explored: ", stateSpacesExplored);
+        response.put("state_space_explored", stateSpacesExplored);
 
         return ResponseEntity.ok(response);
     }

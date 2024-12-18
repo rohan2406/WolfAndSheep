@@ -7,15 +7,6 @@ import java.util.List;
 public class OptimalBacktrackingSolver {
     private final Grid grid;
     private int maxCount = 0;
-
-    public int getStateSpaceCounter() {
-        return stateSpaceCounter;
-    }
-
-    public void setStateSpaceCounter(int stateSpaceCounter) {
-        this.stateSpaceCounter = stateSpaceCounter;
-    }
-
     private int stateSpaceCounter;
 
     public OptimalBacktrackingSolver(Grid grid) {
